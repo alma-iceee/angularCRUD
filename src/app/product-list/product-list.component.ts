@@ -2,6 +2,8 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {MatDialog} from '@angular/material/dialog';
+import {ProductCreateComponent} from '../product-create/product-create.component';
 
 export interface PeriodicElement {
   fullName: number;
@@ -75,7 +77,7 @@ export class ProductListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -85,5 +87,17 @@ export class ProductListComponent implements AfterViewInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  productCreate(): void {
+    const dialogRef = this.dialog.open(ProductCreateComponent, {
+      width: '250px',
+      data: {object: 'object'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 }
