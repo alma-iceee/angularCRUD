@@ -1,11 +1,32 @@
 <h1 mat-dialog-title>Hi {{data}}</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
+  <p>Create product</p>
+
   <mat-form-field>
     <mat-label>Favorite Animal</mat-label>
     <label>
       <input matInput [(ngModel)]="data">
     </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Фамилия:</mat-label>
+    <input matInput type="text" formControlName="surname" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Имя:</mat-label>
+    <input matInput type="text" formControlName="name" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Отчество:</mat-label>
+    <input matInput type="text" formControlName="patronymic" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>День рождения:</mat-label>
+    <input matInput type="date" formControlName="birthDate">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
